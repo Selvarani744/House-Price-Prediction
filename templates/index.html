@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url('/static/img.png') no-repeat center center / cover;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .content {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .login-box {
+            background: white;
+            width: 500px;
+            max-width: 100%;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #001800;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        select {
+            width: 100%;
+            height: 50px;
+            margin: 5px 0 10px;
+            padding: 0 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            background: white;
+        }
+
+        button {
+            width: 100%;
+            height: 52px;
+            margin-top: 20px;
+            background: #001800;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #003300;
+        }
+
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="login-box">
+
+            <h2>House Price Prediction</h2>
+
+            <form action="/predict" method="POST">
+
+                <label for="area">Total Area (sq ft)</label>
+                <input
+                    type="number"
+                    id="area"
+                    name="area"
+                    min="1"
+                    step="any"
+                    placeholder="Enter total area"
+                    required
+                >
+
+                <label for="bedrooms">Bedrooms</label>
+                <input
+                    type="number"
+                    id="bedrooms"
+                    name="bedrooms"
+                    min="1"
+                    placeholder="Enter number of bedrooms"
+                    required
+                >
+
+                <label for="floors">Floors</label>
+                <input
+                    type="number"
+                    id="floors"
+                    name="floors"
+                    min="1"
+                    placeholder="Enter number of floors"
+                    required
+                >
+
+                <label for="age">House Age (Years)</label>
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    min="0"
+                    placeholder="Enter house age"
+                    required
+                >
+
+                <label for="location">Location</label>
+                <select id="location" name="location" required>
+                    <option value="">Select Location</option>
+                    <option value="town">Town</option>
+                    <option value="village">Village</option>
+                </select>
+
+                <label for="water">Water Facility</label>
+                <select id="water" name="water" required>
+                    <option value="">Select Water Facility</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <label for="parking">Parking</label>
+                <select id="parking" name="parking" required>
+                    <option value="">Select Parking Availability</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <label for="nearby">Nearby Facilities</label>
+                <select id="nearby" name="nearby" required>
+                    <option value="">Select Nearby Facilities</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <button type="submit">Predict Price</button>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

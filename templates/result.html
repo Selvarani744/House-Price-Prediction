@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction Result</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 25px 15px;
+            min-height: 100vh;
+            position: relative;
+            color: #222;
+        }
+
+        /* Background image */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url('/static/img.png') no-repeat center center / cover;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        /* Results card */
+        .card {
+            max-width: 650px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #001800;
+            margin-top: 0;
+        }
+
+        h2 {
+            margin-top: 25px;
+            color: #222;
+        }
+
+        .price-section {
+            text-align: center;
+            padding: 25px 10px;
+            margin: 25px 0;
+            background: #f3f7f2;
+            border-radius: 12px;
+        }
+
+        .price-section h2 {
+            color: green;
+            margin-top: 0;
+        }
+
+        .price {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: bold;
+            color: #000;
+            overflow-wrap: anywhere;
+        }
+
+        .details {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .details p {
+            margin: 10px 0;
+        }
+
+        .suggestions {
+            line-height: 1.8;
+            padding-left: 22px;
+        }
+
+        .back-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 25px;
+            background: #001800;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 17px;
+        }
+
+        .back-button:hover {
+            background: #003300;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .card {
+                padding: 25px 20px;
+                margin: 15px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+
+        <h1>House Price Prediction Result</h1>
+
+        <div class="price-section">
+            <h2>Estimated Price</h2>
+            <div class="price">{{ prediction_text }}</div>
+        </div>
+
+        <h2>Property Details</h2>
+
+        <div class="details">
+            <p><strong>Total Area:</strong> {{ area }} sq ft</p>
+            <p><strong>Bedrooms:</strong> {{ bedrooms }}</p>
+            <p><strong>Floors:</strong> {{ floors }}</p>
+            <p><strong>House Age:</strong> {{ age }} years</p>
+            <p><strong>Location:</strong> {{ location|title }}</p>
+            <p><strong>Water Facility:</strong> {{ water|title }}</p>
+            <p><strong>Parking:</strong> {{ parking|title }}</p>
+            <p><strong>Nearby Facilities:</strong> {{ nearby|title }}</p>
+        </div>
+
+        <h2>Prediction Summary</h2>
+
+        <div class="details">
+            <p><strong>Confidence:</strong> {{ confidence }}%</p>
+            <p><strong>Category:</strong> {{ category }}</p>
+            <p><strong>Property Grade:</strong> {{ grade }}</p>
+
+            <h3>Suggestions</h3>
+            <ul class="suggestions">
+                {% for item in suggestions %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="/" class="back-button">Back to Prediction Form</a>
+
+    </div>
+</body>
+</html>
